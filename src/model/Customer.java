@@ -3,7 +3,6 @@ package model;
 public class Customer extends User {
 
     public String address;
-    public String password;
 
     public Customer(String id, String name, String phone, String address) {
         super(id, name, phone);

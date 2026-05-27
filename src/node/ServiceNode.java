@@ -6,8 +6,8 @@ public class ServiceNode extends Service {
 
     private ServiceNode next, prev;
 
-    public ServiceNode(String idService, String nameService, double price) {
-        super(idService, nameService, price);
+    public ServiceNode(String idService, String nameService, double price, String serviceType) {
+        super(idService, nameService, price, serviceType);
         this.next = null;
         this.prev = null;
     }
