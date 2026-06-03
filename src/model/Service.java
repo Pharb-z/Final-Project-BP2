@@ -24,6 +24,6 @@ public class Service {
 
     @Override
     public String toString() {
-        return "ID Service: " + idService + ", Name Service: " + nameService + ", Harga Service: " + hargaService;
+        return "[" + idService + "] |" + nameService + "| |" + hargaService +"| |" + serviceType + "|";
     }
 }
