@@ -4,7 +4,15 @@ import java.util.Scanner;
 
 public class CustomerMethod {
 
-    public static void showCustomerMenu(Scanner sc) {
+    public static void showCustomerPage(Scanner sc) {
+
+        System.out.println("\n-- Halaman Pembeli --");
+
+        System.out.print("Nama Pembeli : ");
+        String name = sc.nextLine();
+
+        System.out.println("Selamat datang, " + name + "!");
+
         int choice;
 
         do {
@@ -13,7 +21,7 @@ public class CustomerMethod {
             System.out.println("2. Hapus Transaksi");
             System.out.println("3. Lihat Belanja");
             System.out.println("4. Selesai");
-            System.out.print("Pilih Menu : ");
+            System.out.print("Pilih : ");
 
             choice = sc.nextInt();
             sc.nextLine();
@@ -32,7 +40,7 @@ public class CustomerMethod {
                     selesaiBelanja();
                     break;
                 default:
-                    System.out.println("Menu tidak tersedia.");
+                    System.out.println("Pilihan tidak valid.");
             }
 
         } while (choice != 4);

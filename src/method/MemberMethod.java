@@ -4,7 +4,19 @@ import java.util.Scanner;
 
 public class MemberMethod {
 
-    public static void showMemberMenu(Scanner sc) {
+    public static void showMemberPage(Scanner sc) {
+
+        System.out.println("\n-- Login Member --");
+
+        System.out.print("Nama : ");
+        String name = sc.nextLine();
+
+        System.out.print("Password : ");
+        String password = sc.nextLine();
+
+        // nanti bisa dicek ke linked list member
+        System.out.println("Login berhasil. Selamat datang, " + name + "!");
+
         int choice;
 
         do {
@@ -14,7 +26,7 @@ public class MemberMethod {
             System.out.println("3. Lihat Belanja");
             System.out.println("4. Ubah Password");
             System.out.println("5. Selesai");
-            System.out.print("Pilih Menu : ");
+            System.out.print("Pilih : ");
 
             choice = sc.nextInt();
             sc.nextLine();
@@ -36,7 +48,7 @@ public class MemberMethod {
                     selesaiBelanja();
                     break;
                 default:
-                    System.out.println("Menu tidak tersedia.");
+                    System.out.println("Pilihan tidak valid.");
             }
 
         } while (choice != 5);
