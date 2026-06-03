@@ -7,7 +7,10 @@ public class QueueNode {
     public Order order;
     public QueueNode next;
 
-    QueueNode() {
+    public QueueNode() {
 
+    }
+    public String toString(){
+        return order.idOrder + " " + order.buyer + " " + order.service + " " + order.price;
     }
 }

@@ -8,7 +8,7 @@ public class OrderQueue {
     int count;
     double total;
 
-    OrderQueue() {
+    public OrderQueue() {
 
     }
 
@@ -21,5 +21,24 @@ public class OrderQueue {
         }
         total = total + (OrderNode.order.price * OrderNode.order.qty);
         //total = total + (OrderNode.order.price * OrderNode.order.qty);
+    }
+
+    public void dequeue() {
+        QueueNode t = front;
+        if (t == null) {
+            System.out.println("Antrian kosong!");
+        }else if (t.next == null) {
+            front = rear = null;
+        }else{
+            front = front.next;
+            t.next = null;
+        }
+        System.out.println(t);
+        if(t == null){
+            System.out.println("Antrian kosong!");
+        }else{
+            
+            System.out.println(t.order.service + " out...");
+        }
     }
 }
