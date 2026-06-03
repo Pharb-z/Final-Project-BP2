@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 import linkedlist.*;
 import model.*;
+
 public class OwnerApp {
 
     public static void main(String[] args) {
@@ -21,35 +22,28 @@ public class OwnerApp {
         } while (!name.equalsIgnoreCase(owner.name) && !pass.equals(owner.password));
         do {
             System.out.println("Hai " + owner.name + "!");
-            System.out.println("1. Tambahkan Layanan");
-            System.out.println("2. Tampilkan Layanan");
-            System.out.println("3. Exit");
+            System.out.println("1. Tampilkan Order Penjualan yang sudah diproses");
+            System.out.println("2. Tampilkan Order Penjualan yang belum diproses");
+            System.out.println("3. Tampilkan Layanan");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    System.out.print("Masukkan id layanan: ");
-                    String idService = sc.nextLine();
-                    System.out.print("Masukkan nama layanan: ");
-                    String serviceName = sc.nextLine();
-                    System.out.print("Masukkan harga layanan: ");
-                    double price = sc.nextDouble();
-                    sc.nextLine();
-                    System.out.print("Masukkan tipe layanan: ");
-                    String type = sc.nextLine();
-                    serviceLL.addService(idService, serviceName, price, type);
                     break;
                 case 2:
                     serviceLL.displayService();
                     break;
                 case 3:
+                    break;
+                case 4:
                     System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 3);
+        } while (choice != 4);
         sc.close();
     }
 }
