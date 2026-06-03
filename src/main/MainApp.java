@@ -1,8 +1,8 @@
 package main;
 
 import java.util.Scanner;
-import method.MemberMethod;
-import method.CustomerMethod;
+import method.*;
+import method.*;
 
 public class MainApp {
 
@@ -22,11 +22,11 @@ public class MainApp {
 
             switch (choice) {
                 case 1:
-                    MemberMethod.showMemberMenu(sc);
+                    MemberMethod.showMemberPage(sc);
                     break;
 
                 case 2:
-                    CustomerMethod.showCustomerMenu(sc);
+                    CustomerMethod.showCustomerPage(sc);
                     break;
 
                 case 3:
