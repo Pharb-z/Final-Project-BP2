@@ -1,8 +1,7 @@
 package main;
 
 import java.util.Scanner;
-import method.MemberMethod;
-import method.CustomerMethod;
+import method.*;
 
 public class MainApp {
 
