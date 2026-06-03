@@ -3,7 +3,6 @@ package main;
 import java.util.Scanner;
 import linkedlist.*;
 import model.*;
-
 public class OwnerApp {
 
     public static void main(String[] args) {
@@ -51,5 +50,6 @@ public class OwnerApp {
                     System.out.println("Invalid choice. Please try again.");
             }
         } while (choice != 3);
+        sc.close();
     }
 }
