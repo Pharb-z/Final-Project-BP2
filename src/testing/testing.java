@@ -13,10 +13,10 @@ public class testing {
         ServiceLL service = new ServiceLL();
         service.addService("SRV1", "Cuci Basah", 4000, "Kiloan");
         Order order = new Order("ORD1", "Wahyu", "Cuci Basah", 6000, "Kiloan", 5);
-        QueueNode node = new QueueNode();
-        node.order = order;
+        // QueueNode node = new QueueNode();
+        // node.order = order;
         OrderQueue queue = new OrderQueue();
-        queue.enqueue(node);
+        // queue.enqueue(node);
         System.out.println("Next?");
         int ch = sc.nextInt();
         sc.nextLine();

@@ -4,26 +4,26 @@ public class Service {
 
     public String idService;
     public String nameService;
-    public double hargaService;
+    public double price;
     public String serviceType;
 
-    public Service(String idService, String nameService, double hargaService, String serviceType) {
+    public Service(String idService, String nameService, double price, String serviceType) {
         this.idService = idService;
         this.nameService = nameService;
-        this.hargaService = hargaService;
+        this.price = price;
         this.serviceType = serviceType;
     }
 
     public double countPriceKG(int quantity) {
-        return hargaService * quantity;
+        return price * quantity;
     }
 
     public double countPricePcs(int quantity) {
-        return hargaService * quantity;
+        return price * quantity;
     }
 
     @Override
     public String toString() {
-        return "[" + idService + "] |" + nameService + "| |" + hargaService +"| |" + serviceType + "|";
+        return "[" + idService + "] |" + nameService + "| |" + price +"| |" + serviceType + "|";
     }
 }

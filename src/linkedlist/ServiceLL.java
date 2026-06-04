@@ -48,4 +48,19 @@ public class ServiceLL {
             current = current.getNext();
         }
     }
+
+    public ServiceNode searchService(String id) {
+        ServiceNode current = head;
+
+        while (current != null) {
+
+            if (current.idService.equalsIgnoreCase(id)) {
+                return current;
+            }
+
+            current = current.getNext();
+        }
+
+        return null;
+    }
 }
