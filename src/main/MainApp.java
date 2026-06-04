@@ -1,23 +1,25 @@
 package main;
 
 import java.util.Scanner;
-import linkedlist.MemberLL;
-import linkedlist.ServiceLL;
-import method.MemberMethod;
-import node.MemberNode;
+import linkedlist.*;
+import method.*;
+import model.*;
+import node.*;
 
 public class MainApp {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int choice, choice2, srvChoice;
-        String name, password;
+        int choice, byrChoice, srvChoice, memChoice, admChoice, ownChoice;
+        String memName, memPassword, byrName, ownName, ownPass;
+
         //Objek member
         MemberLL membership = new MemberLL();
         membership.addMember("M1", "Rava", "085788812399", "Kalijudan", "123", "Bronze");
         membership.addMember("M2", "Farhan", "081234567890", "Kepuh Kemiri", "123", "Bronze");
         membership.addMember("M3", "Bhinar", "082737762367", "Tambaksari", "123", "Bronze");
         membership.addMember("M4", "Farrel", "082334778343", "Sirapan", "123", "Bronze");
+
         //Objek layanan
         ServiceLL serviceKiloan = new ServiceLL(); //Object Service Kiloan
         ServiceLL serviceSatuan = new ServiceLL(); //Object Service Satuan
@@ -30,6 +32,13 @@ public class MainApp {
         serviceSatuan.addService("SRV1", "Cuci Kering", 10000, "Satuan");
         serviceSatuan.addService("SRV2", "Cuci Kering + Setrika", 15000, "Satuan");
         serviceSatuan.addService("SRV3", "Setrika", 10000, "Satuan");
+
+        //Objek admin
+        Admin admin = new Admin("ADM1", "Radit", "0821923887323", "Sirapan", "admin123");
+
+        //Objek owner
+        Owner owner = new Owner("1", "Yuli", "0821398438434", "owner123");
+
         //Main
         do {
             System.out.println("\n=== Laundry Bu Yuli ===");
@@ -49,9 +58,9 @@ public class MainApp {
                     System.out.println("\n-- Halaman Pembeli --");
 
                     System.out.print("Nama Pembeli : ");
-                    name = sc.nextLine();
+                    byrName = sc.nextLine();
 
-                    System.out.println("Selamat datang, " + name + "!");
+                    System.out.println("Selamat datang, " + byrName + "!");
 
                     do {
                         System.out.println("\n===== MENU PEMBELI =====");
@@ -61,10 +70,10 @@ public class MainApp {
                         System.out.println("4. Selesai");
                         System.out.print("Pilih : ");
 
-                        choice2 = sc.nextInt();
+                        byrChoice = sc.nextInt();
                         sc.nextLine();
 
-                        switch (choice2) {
+                        switch (byrChoice) {
                             case 1:
                                 do {
                                     System.out.println("Pilih layanan");
@@ -99,22 +108,22 @@ public class MainApp {
                                 System.out.println("Pilihan tidak valid.");
                         }
 
-                    } while (choice2 != 4);
+                    } while (byrChoice != 4);
                     break;
                 //Menu member
                 case 2:
                     System.out.println("\n-- Login Member --");
 
                     System.out.print("Nama : ");
-                    name = sc.nextLine();
+                    memName = sc.nextLine();
 
                     System.out.print("Password : ");
-                    password = sc.nextLine();
+                    memPassword = sc.nextLine();
 
                     //cek verifikasi login ke linked list member
-                    MemberNode memberLogin = membership.verifLogin(name, password);
+                    MemberNode memberLogin = membership.verifLogin(memName, memPassword);
                     if (memberLogin != null) {
-                        System.out.println("Login berhasil!\nSelamat datang, " + name + "!");
+                        System.out.println("Login berhasil!\nSelamat datang, " + memName + "!");
                         do {
                             System.out.println("\n===== MENU MEMBER =====");
                             System.out.println("1. Pesan Layanan");
@@ -124,10 +133,10 @@ public class MainApp {
                             System.out.println("5. Selesai");
                             System.out.print("Pilih : ");
 
-                            choice2 = sc.nextInt();
+                            memChoice = sc.nextInt();
                             sc.nextLine();
 
-                            switch (choice2) {
+                            switch (memChoice) {
                                 case 1:
                                     MemberMethod.tambahBarang();
                                     break;
@@ -146,7 +155,7 @@ public class MainApp {
                                     System.out.println("Pilihan tidak valid.");
                             }
 
-                        } while (choice2 != 5);
+                        } while (memChoice != 5);
                         break;
                     } else {
                         System.out.println("Nama atau password salah!");
@@ -154,11 +163,45 @@ public class MainApp {
                     break;
                 //Menu admin
                 case 3:
-
+                    
                     break;
                 //Menu owner
                 case 4:
+                    do {
+                        System.out.println("Laundry Bu Yuli (Owner)");
+                        System.out.print("Masukkan username : ");
+                        ownName = sc.nextLine();
+                        System.out.print("Masukkan password : ");
+                        ownPass = sc.nextLine();
+                    } while (!ownName.equalsIgnoreCase(owner.name) && !ownPass.equals(owner.password));
+                    do {
+                        System.out.println("Hai " + owner.name + "!");
+                        System.out.println("1. Tampilkan Order Penjualan yang sudah diproses");
+                        System.out.println("2. Tampilkan Order Penjualan yang belum diproses");
+                        System.out.println("3. Tampilkan Layanan");
+                        System.out.println("4. Exit");
+                        System.out.print("Enter your choice: ");
+                        ownChoice = sc.nextInt();
+                        sc.nextLine();
+                        switch (ownChoice) {
+                            case 1:
+                                break;
+                            case 2:
 
+                                break;
+                            case 3:
+                                System.out.println("Layanan Laundry Kiloan");
+                                serviceKiloan.displayService();
+                                System.out.println("Layanan Laundry Satuan");
+                                serviceSatuan.displayService();
+                                break;
+                            case 4:
+                                System.out.println("Exiting...");
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please try again.");
+                        }
+                    } while (ownChoice != 4);
                     break;
                 case 5:
                     System.out.println("Keluar...");
