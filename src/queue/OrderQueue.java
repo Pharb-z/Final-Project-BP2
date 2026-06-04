@@ -56,17 +56,17 @@ public class OrderQueue {
         QueueNode temp = front;
 
         System.out.println("\n===== DAFTAR BELANJA =====");
-
+        System.out.println("Pemesan : " + temp.order.buyer);
         while (temp != null) {
 
             System.out.println(
-                    temp.order.getId() +
-                            " | " +
-                            temp.order.getService() +
-                            " | Qty : " +
-                            temp.order.getQty() +
-                            " | Total : Rp" +
-                            temp.order.getSubtotal());
+                    temp.order.getId()
+                    + " | "
+                    + temp.order.getService() + " " + temp.order.getType()
+                    + " | Qty : "
+                    + temp.order.getQty()
+                    + " | Total : Rp"
+                    + temp.order.getSubtotal());
 
             temp = temp.next;
         }
