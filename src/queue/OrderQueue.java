@@ -12,6 +12,10 @@ public class OrderQueue {
 
     }
 
+    public boolean isEmpty() {
+        return front == null;
+    }
+
     public void enqueue(QueueNode OrderNode) {
         if (rear == null) {
             front = rear = OrderNode;
@@ -78,5 +82,44 @@ public class OrderQueue {
         total = 0;
 
         System.out.println("Transaksi berhasil dihapus.");
+    }
+
+    public QueueNode getFront() {
+        return front;
+    }
+
+    public void transferTo(OrderQueue target) {
+
+        QueueNode temp = front;
+
+        while (temp != null) {
+
+            QueueNode newNode = new QueueNode(temp.order);
+
+            target.enqueue(newNode);
+
+            temp = temp.next;
+        }
+
+        clearQueue();
+    }
+
+    public QueueNode dequeueReturn() {
+
+        if (front == null) {
+            return null;
+        }
+
+        QueueNode temp = front;
+
+        front = front.next;
+
+        if (front == null) {
+            rear = null;
+        }
+
+        temp.next = null;
+
+        return temp;
     }
 }

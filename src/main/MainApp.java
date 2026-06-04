@@ -25,6 +25,8 @@ public class MainApp {
         ServiceLL serviceKiloan = new ServiceLL(); // Object Service Kiloan
 
         int transactionCounter = 1;
+        OrderQueue adminQueue = new OrderQueue(); // menampung transaksi yang sudah dikonfirmasi pembeli.
+        OrderQueue processedQueue = new OrderQueue(); // riwayat proses
 
         ServiceLL serviceSatuan = new ServiceLL(); // Object Service Satuan
         // Service Kiloan
@@ -73,7 +75,8 @@ public class MainApp {
                         System.out.println("1. Pesan Layanan");
                         System.out.println("2. Hapus Transaksi");
                         System.out.println("3. Lihat Belanja");
-                        System.out.println("4. Selesai");
+                        System.out.println("4. Konfirmasi Belanja");
+                        System.out.println("5. Selesai");
                         System.out.print("Pilih : ");
 
                         byrChoice = sc.nextInt();
@@ -157,6 +160,7 @@ public class MainApp {
                                             break;
                                         case 3:
                                             System.out.println("Kembali ke menu");
+
                                         default:
                                             System.out.println("Pilihan tidak valid.");
                                     }
@@ -169,14 +173,36 @@ public class MainApp {
                                 cart.displayQueue();
                                 break;
                             case 4:
-                                System.out.println("Transaksi berhasil disimpan.");
-                                cart.displayQueue();
+                                if (cart.isEmpty()) {
+
+                                    System.out.println("Belum ada pesanan!");
+
+                                } else {
+
+                                    System.out.print("Yakin konfirmasi pesanan? (Y/N): ");
+                                    String confirm = sc.nextLine();
+
+                                    if (confirm.equalsIgnoreCase("Y")) {
+
+                                        cart.transferTo(adminQueue);
+
+                                        System.out.println("Pesanan berhasil dikirim ke Admin.");
+
+                                    } else {
+
+                                        System.out.println("Pesanan dibatalkan.");
+
+                                    }
+                                }
+                                break;
+                            case 5:
+                                System.out.println("Kembali ke menu utama...");
                                 break;
                             default:
                                 System.out.println("Pilihan tidak valid.");
                         }
 
-                    } while (byrChoice != 4);
+                    } while (byrChoice != 5);
                     break;
                 // Menu member
                 case 2:
@@ -192,13 +218,16 @@ public class MainApp {
                     MemberNode memberLogin = membership.verifLogin(memName, memPassword);
                     if (memberLogin != null) {
                         System.out.println("Login berhasil!\nSelamat datang, " + memName + "!");
+                        OrderQueue memberCart = new OrderQueue();
+                        int[] memberCounter = { transactionCounter };
                         do {
                             System.out.println("\n===== MENU MEMBER =====");
                             System.out.println("1. Pesan Layanan");
                             System.out.println("2. Hapus Transaksi");
                             System.out.println("3. Lihat Belanja");
-                            System.out.println("4. Ubah Password");
-                            System.out.println("5. Selesai");
+                            System.out.println("4. Konfirmasi Belanja");
+                            System.out.println("5. Ubah Password");
+                            System.out.println("6. Selesai");
                             System.out.print("Pilih : ");
 
                             memChoice = sc.nextInt();
@@ -206,24 +235,42 @@ public class MainApp {
 
                             switch (memChoice) {
                                 case 1:
-                                    MemberMethod.tambahBarang();
+                                    transactionCounter = MemberMethod.tambahBarang(
+                                            sc,
+                                            serviceKiloan,
+                                            serviceSatuan,
+                                            memberCart,
+                                            memberLogin.name,
+                                            transactionCounter);
                                     break;
                                 case 2:
-                                    MemberMethod.hapusTransaksi();
+                                    MemberMethod.hapusTransaksi(
+                                            memberCart);
                                     break;
                                 case 3:
-                                    MemberMethod.lihatBelanja();
+                                    MemberMethod.lihatBelanja(
+                                            memberCart);
                                     break;
                                 case 4:
+                                    MemberMethod.konfirmasiBelanja(
+                                            sc,
+                                            memberCart,
+                                            adminQueue);
                                     break;
                                 case 5:
-                                    MemberMethod.selesaiBelanja();
+                                    MemberMethod.ubahPassword(
+                                            sc,
+                                            memberLogin);
+                                    break;
+                                case 6:
+                                    System.out.println(
+                                            "Kembali ke menu utama...");
                                     break;
                                 default:
                                     System.out.println("Pilihan tidak valid.");
                             }
 
-                        } while (memChoice != 5);
+                        } while (memChoice != 6);
                         break;
                     } else {
                         System.out.println("Nama atau password salah!");
@@ -231,6 +278,75 @@ public class MainApp {
                     break;
                 // Menu admin
                 case 3:
+                    System.out.println("\n-- Login Admin --");
+
+                    System.out.print("Masukkan Nama Admin : ");
+                    String adminName = sc.nextLine();
+
+                    System.out.print("Masukkan Password Admin : ");
+                    String adminPass = sc.nextLine();
+
+                    if (adminName.equalsIgnoreCase(admin.name)
+                            && adminPass.equals(admin.password)) {
+
+                        do {
+
+                            System.out.println(
+                                    "\n===== MENU ADMIN =====");
+
+                            System.out.println(
+                                    "1. Lihat Transaksi Belum Diproses");
+
+                            System.out.println(
+                                    "2. Proses Transaksi");
+
+                            System.out.println(
+                                    "3. Keluar");
+
+                            System.out.print(
+                                    "Pilih : ");
+
+                            admChoice = sc.nextInt();
+
+                            sc.nextLine();
+
+                            switch (admChoice) {
+
+                                case 1:
+
+                                    AdminMethod.lihatTransaksi(
+                                            adminQueue);
+
+                                    break;
+
+                                case 2:
+
+                                    AdminMethod.prosesTransaksi(
+                                            adminQueue,
+                                            processedQueue);
+
+                                    break;
+
+                                case 3:
+
+                                    System.out.println(
+                                            "Keluar dari Admin.");
+
+                                    break;
+
+                                default:
+
+                                    System.out.println(
+                                            "Pilihan tidak valid.");
+                            }
+
+                        } while (admChoice != 3);
+
+                    } else {
+
+                        System.out.println(
+                                "Nama/Password Admin salah!");
+                    }
 
                     break;
                 // Menu owner
