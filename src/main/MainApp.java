@@ -351,41 +351,105 @@ public class MainApp {
                     break;
                 // Menu owner
                 case 4:
+
+                    boolean loginOwner = false;
+
                     do {
-                        System.out.println("Laundry Bu Yuli (Owner)");
-                        System.out.print("Masukkan username : ");
+
+                        System.out.println(
+                                "\n===== LOGIN OWNER =====");
+
+                        System.out.print(
+                                "Username : ");
+
                         ownName = sc.nextLine();
-                        System.out.print("Masukkan password : ");
+
+                        System.out.print(
+                                "Password : ");
+
                         ownPass = sc.nextLine();
-                    } while (!ownName.equalsIgnoreCase(owner.name) && !ownPass.equals(owner.password));
+
+                        if (ownName.equalsIgnoreCase(owner.name)
+                                && ownPass.equals(owner.password)) {
+
+                            loginOwner = true;
+
+                        } else {
+
+                            System.out.println(
+                                    "Username atau Password salah!");
+                        }
+
+                    } while (!loginOwner);
+
                     do {
-                        System.out.println("Hai " + owner.name + "!");
-                        System.out.println("1. Tampilkan Order Penjualan yang sudah diproses");
-                        System.out.println("2. Tampilkan Order Penjualan yang belum diproses");
-                        System.out.println("3. Tampilkan Layanan");
-                        System.out.println("4. Exit");
-                        System.out.print("Enter your choice: ");
+
+                        System.out.println(
+                                "\n===== MENU OWNER =====");
+
+                        System.out.println(
+                                "1. Total Order Sudah Diproses");
+
+                        System.out.println(
+                                "2. Total Order Belum Diproses");
+
+                        System.out.println(
+                                "3. Lihat Daftar Layanan");
+
+                        System.out.println(
+                                "4. Keluar");
+
+                        System.out.print(
+                                "Pilih : ");
+
                         ownChoice = sc.nextInt();
                         sc.nextLine();
+
                         switch (ownChoice) {
+
                             case 1:
-                                break;
-                            case 2:
+
+                                OwnerMethod.lihatSudahDiproses(
+                                        processedQueue);
 
                                 break;
+
+                            case 2:
+
+                                OwnerMethod.lihatBelumDiproses(
+                                        adminQueue);
+
+                                break;
+
                             case 3:
-                                System.out.println("Layanan Laundry Kiloan");
+
+                                System.out.println(
+                                        "\n===== LAYANAN KILOAN =====");
+
                                 serviceKiloan.displayService();
-                                System.out.println("Layanan Laundry Satuan");
+
+                                System.out.println(
+                                        "\n===== LAYANAN SATUAN =====");
+
                                 serviceSatuan.displayService();
+
                                 break;
+
                             case 4:
-                                System.out.println("Exiting...");
+
+                                System.out.println(
+                                        "Keluar dari Owner.");
+
                                 break;
+
                             default:
-                                System.out.println("Invalid choice. Please try again.");
+
+                                System.out.println(
+                                        "Pilihan tidak valid.");
                         }
+
                     } while (ownChoice != 4);
+
                     break;
                 case 5:
                     System.out.println("Keluar...");

@@ -16,6 +16,10 @@ public class OrderQueue {
         return front == null;
     }
 
+    public double getTotal() {
+        return total;
+    }
+
     public void enqueue(QueueNode OrderNode) {
         if (rear == null) {
             front = rear = OrderNode;
@@ -55,23 +59,76 @@ public class OrderQueue {
 
         QueueNode temp = front;
 
-        System.out.println("\n===== DAFTAR BELANJA =====");
-        System.out.println("Pemesan : " + temp.order.buyer);
+        String currentBuyer = "";
+        double totalBuyer = 0;
+
+        System.out.println("\n===== DAFTAR TRANSAKSI =====");
+
         while (temp != null) {
 
+            if (!temp.order.buyer.equals(currentBuyer)) {
+
+                if (!currentBuyer.equals("")) {
+                    System.out.println(
+                            "Total " + currentBuyer +
+                                    " : Rp" + totalBuyer);
+                    System.out.println("-----------------------");
+                }
+
+                currentBuyer = temp.order.buyer;
+                totalBuyer = 0;
+
+                System.out.println(
+                        "\nPembeli : " + currentBuyer);
+            }
+
             System.out.println(
-                    temp.order.getId()
-                    + " | "
-                    + temp.order.getService() + " " + temp.order.getType()
-                    + " | Qty : "
-                    + temp.order.getQty()
-                    + " | Total : Rp"
-                    + temp.order.getSubtotal());
+                    temp.order.idOrder
+                            + " | "
+                            + temp.order.service
+                            + " | Qty : "
+                            + temp.order.qty
+                            + " | Rp"
+                            + temp.order.getSubtotal());
+
+            totalBuyer += temp.order.getSubtotal();
 
             temp = temp.next;
         }
 
-        System.out.println("---------------------");
+        System.out.println(
+                "Total " + currentBuyer +
+                        " : Rp" + totalBuyer);
+
+        System.out.println("=======================");
+        System.out.println("Grand Total : Rp" + total);
+    }
+
+    public void displayQueueWithoutTitle() {
+
+        if (front == null) {
+            System.out.println("Belum ada transaksi.");
+            return;
+        }
+
+        QueueNode temp = front;
+
+        while (temp != null) {
+
+            System.out.println(
+                    temp.order.idOrder
+                            + " | "
+                            + temp.order.buyer
+                            + " | "
+                            + temp.order.service
+                            + " | Qty : "
+                            + temp.order.qty
+                            + " | Rp"
+                            + temp.order.getSubtotal());
+
+            temp = temp.next;
+        }
+
         System.out.println("Grand Total : Rp" + total);
     }
 
