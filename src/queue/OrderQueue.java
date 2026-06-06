@@ -169,6 +169,8 @@ public class OrderQueue {
 
         QueueNode temp = front;
 
+        total -= temp.order.getSubtotal();
+
         front = front.next;
 
         if (front == null) {
