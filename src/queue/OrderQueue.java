@@ -97,7 +97,7 @@ public class OrderQueue {
         }
 
         System.out.println(
-                "Total " + currentBuyer +
+                "Total Customer " + currentBuyer +
                         " : Rp" + totalBuyer);
 
         System.out.println("=======================");
