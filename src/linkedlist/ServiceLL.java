@@ -1,10 +1,15 @@
 package linkedlist;
 
+import javax.swing.table.DefaultTableModel;
 import node.*;
 
 public class ServiceLL {
 
     ServiceNode tail, head;
+
+    public ServiceNode getHead() {
+        return head;
+    }
 
     public void addService(String id, String name, double price, String type) {
         ServiceNode newNode = new ServiceNode(id, name, price, type);
@@ -62,5 +67,33 @@ public class ServiceLL {
         }
 
         return null;
+    }
+
+    public DefaultTableModel getTableModel() {
+
+        String[] kolom = {
+            "ID",
+            "Layanan",
+            "Harga",
+            "Tipe"
+        };
+
+        DefaultTableModel model = new DefaultTableModel(kolom, 0);
+
+        ServiceNode current = head;
+
+        while (current != null) {
+
+            model.addRow(new Object[]{
+                current.idService,
+                current.nameService,
+                current.price,
+                current.serviceType
+            });
+
+            current = current.getNext();
+        }
+
+        return model;
     }
 }

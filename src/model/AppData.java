@@ -1,10 +1,14 @@
 package model;
-
+import linkedlist.*;
 public class AppData {
+
     public Order order;
-    public Member member;
+    public Member membership;
     public Customer customer;
-    public Service serviceSatuan;
-    public Service serviceKiloan;
+    public ServiceLL serviceSatuan;
+    public ServiceLL serviceKiloan;
     public Owner owner;
+    public Admin admin;
+    public Customer currentCustomer;
+    public OrderLL orderList;
 }

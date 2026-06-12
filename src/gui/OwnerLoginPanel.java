@@ -4,9 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 import model.*;
 
-public class MemberLoginPanel extends JPanel {
+public class OwnerLoginPanel extends JPanel {
 
-    public MemberLoginPanel(AppData data) {
+    public OwnerLoginPanel(AppData data) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -15,13 +15,13 @@ public class MemberLoginPanel extends JPanel {
 
         // PANEL UTAMA (CARD)
         JPanel card = new JPanel(new GridBagLayout());
-        card.setBorder(BorderFactory.createTitledBorder("Member Login Page"));
+        card.setBorder(BorderFactory.createTitledBorder("Owner Login Page"));
 
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // ===== TITLE =====
-        JLabel title = new JLabel("Member Login", JLabel.CENTER);
+        JLabel title = new JLabel("Owner Login", JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 18));
         gbc.gridx = 0;
         gbc.gridy = 0;
