@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
+
+import linkedlist.OrderLL;
 import main.*;
 import model.*;
 
@@ -60,10 +62,26 @@ public class CustomerMenuPanel extends JPanel {
             MainAppGUI.showCustomerDisplay();
         });
         deleteButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Fitur ini belum tersedia", "Info", JOptionPane.INFORMATION_MESSAGE);
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "Apakah Anda yakin ingin menghapus semua pesanan?",
+                    "Konfirmasi Hapus",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                // Hapus semua pesanan
+                data.orderList = new OrderLL();
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Semua pesanan berhasil dihapus!");
+
+            }
         });
         backButton.addActionListener(e -> {
-            int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin kembali ke halaman utama?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin kembali ke halaman utama?",
+                    "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 MainAppGUI.showLandingPage();
             }

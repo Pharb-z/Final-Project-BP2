@@ -1,9 +1,11 @@
 package model;
+
 import linkedlist.*;
+
 public class AppData {
 
     public Order order;
-    public Member membership;
+    public MemberLL memberList;
     public Customer customer;
     public ServiceLL serviceSatuan;
     public ServiceLL serviceKiloan;
@@ -11,4 +13,5 @@ public class AppData {
     public Admin admin;
     public Customer currentCustomer;
     public OrderLL orderList;
+    public Member currentMember;
 }

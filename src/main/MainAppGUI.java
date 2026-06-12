@@ -13,10 +13,39 @@ public class MainAppGUI {
     public static void main(String[] args) {
 
         // Membership
-        data.membership = new Member("M1", "Rava", "085788812399", "Kalijudan", "123", "Bronze");
-        data.membership = new Member("M2", "Farhan", "081234567890", "Kepuh Kemiri", "123", "Bronze");
-        data.membership = new Member("M3", "Bhinar", "082737762367", "Tambaksari", "123", "Bronze");
-        data.membership = new Member("M4", "Farrel", "082334778343", "Sirapan", "123", "Bronze");
+        data.memberList = new MemberLL();
+
+        data.memberList.addMember(
+                "M1",
+                "Rava",
+                "085788812399",
+                "Kalijudan",
+                "123",
+                "Bronze");
+
+        data.memberList.addMember(
+                "M2",
+                "Farhan",
+                "081234567890",
+                "Kepuh Kemiri",
+                "123",
+                "Bronze");
+
+        data.memberList.addMember(
+                "M3",
+                "Bhinar",
+                "082737762367",
+                "Tambaksari",
+                "123",
+                "Bronze");
+
+        data.memberList.addMember(
+                "M4",
+                "Farrel",
+                "082334778343",
+                "Sirapan",
+                "123",
+                "Bronze");
 
         // Service Kiloan
         data.serviceKiloan = new ServiceLL();
@@ -34,10 +63,10 @@ public class MainAppGUI {
         // Owner
         data.owner = new Owner("OWN", "Yuli", "0821398438434", "owner123");
 
-        //Admin
+        // Admin
         data.admin = new Admin("ADM1", "Radit", "0821923887323", "Sirapan", "admin123");
 
-        //OrderList
+        // OrderList
         data.orderList = new OrderLL();
 
         frame.setSize(900, 600);
@@ -52,7 +81,7 @@ public class MainAppGUI {
         frame.repaint();
     }
 
-    //Customer
+    // Customer
     public static void showCustomerLogin() {
         frame.setContentPane(new CustomerLoginPanel(data));
         frame.revalidate();
@@ -76,25 +105,83 @@ public class MainAppGUI {
         frame.revalidate();
         frame.repaint();
     }
-    
 
-    //Admin
+    // Admin
     public static void showAdminLogin() {
         frame.setContentPane(new AdminLoginPanel(data));
         frame.revalidate();
         frame.repaint();
     }
 
-    //Member
+    public static void showAdminMenu() {
+        frame.setContentPane(
+                new AdminMenuPanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showAdminDisplay() {
+
+        frame.setContentPane(
+                new AdminDisplayPanel(data));
+
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showAdminProcess() {
+
+        frame.setContentPane(
+                new AdminProcessPanel(data));
+
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    // Member
     public static void showMemberLogin() {
         frame.setContentPane(new MemberLoginPanel(data));
         frame.revalidate();
         frame.repaint();
     }
 
-    //Owner
+    public static void showMemberMenu() {
+        frame.setContentPane(new MemberMenuPanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showMemberDisplay() {
+        frame.setContentPane(new MemberDisplayPanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showMemberOrder() {
+        frame.setContentPane(new MemberOrderPanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    // Owner
     public static void showOwnerLogin() {
         frame.setContentPane(new OwnerLoginPanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showOwnerMenu() {
+
+        frame.setContentPane(
+                new OwnerMenuPanel(data));
+
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showOwnerDisplay() {
+        frame.setContentPane(
+                new OwnerDisplayPanel(data));
         frame.revalidate();
         frame.repaint();
     }

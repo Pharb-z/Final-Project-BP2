@@ -8,51 +8,41 @@ import main.MainAppGUI;
 import model.*;
 import node.OrderNode;
 
-public class CustomerDisplayPanel extends JPanel {
+public class MemberDisplayPanel extends JPanel {
 
     private AppData data;
 
-    public CustomerDisplayPanel(AppData data) {
-        this.data = data;
+    public MemberDisplayPanel(AppData data) {
 
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        this.data = data;
 
         setLayout(new BorderLayout());
 
-        // PANEL UTAMA (CARD)
         JPanel card = new JPanel(new GridBagLayout());
-        card.setBorder(BorderFactory.createTitledBorder("Customer Menu"));
+        card.setBorder(
+                BorderFactory.createTitledBorder("Member Menu"));
 
+        GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // ===== TITLE =====
-        JLabel title = new JLabel("Pesanan", JLabel.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 18));
+
+        JLabel title = new JLabel(
+                "Pesanan Member",
+                JLabel.CENTER);
+
+        title.setFont(
+                new Font("Arial",
+                        Font.BOLD,
+                        18));
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
+
         card.add(title, gbc);
-        // button kembali dan konfirmasi
-        JPanel buttonPanel = new JPanel(
-                new FlowLayout(FlowLayout.CENTER, 20, 0));
 
-        JButton backButton = new JButton("Kembali");
-        JButton confirmButton = new JButton("Konfirmasi Pesanan");
-
-        buttonPanel.add(backButton);
-        buttonPanel.add(confirmButton);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
-        gbc.fill = GridBagConstraints.NONE;
-
-        card.add(buttonPanel, gbc);
+        // ===== TABEL =====
 
         String[] kolom = {
                 "ID Order",
@@ -67,7 +57,8 @@ public class CustomerDisplayPanel extends JPanel {
 
         DefaultTableModel model = new DefaultTableModel(kolom, 0);
 
-        if (data.orderList != null) {
+        if (data.orderList != null
+                && data.currentMember != null) {
 
             OrderNode current = data.orderList.getHead();
 
@@ -75,9 +66,8 @@ public class CustomerDisplayPanel extends JPanel {
 
                 if (current.order.getStatus() == 0
                         && current.order.getBuyer()
-                                .equalsIgnoreCase(data.currentCustomer.id)) {
-
-                    String statusText = "Menunggu";
+                                .equalsIgnoreCase(
+                                        data.currentMember.name)) {
 
                     model.addRow(new Object[] {
                             current.order.getId(),
@@ -87,37 +77,72 @@ public class CustomerDisplayPanel extends JPanel {
                             current.order.getType(),
                             current.order.getQty(),
                             current.order.getSubtotal(),
-                            statusText
+                            "Menunggu"
                     });
                 }
 
                 current = current.getNext();
             }
         }
-        JTable orderTable = new JTable();
 
-        orderTable.setModel(model);
+        JTable orderTable = new JTable(model);
+
         orderTable.setRowHeight(30);
-        orderTable.setDefaultEditor(Object.class, null);
-        orderTable.getTableHeader().setReorderingAllowed(false);
-        orderTable.getTableHeader().setResizingAllowed(false);
-        orderTable.setModel(model);
+
+        orderTable.setDefaultEditor(
+                Object.class,
+                null);
+
+        orderTable.getTableHeader()
+                .setReorderingAllowed(false);
+
         JScrollPane scrollPane = new JScrollPane(orderTable);
+
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+
         card.add(scrollPane, gbc);
+
+        // ===== BUTTON =====
+
+        JPanel buttonPanel = new JPanel(
+                new FlowLayout(
+                        FlowLayout.CENTER,
+                        20,
+                        0));
+
+        JButton backButton = new JButton("Kembali");
+
+        JButton confirmButton = new JButton("Konfirmasi Pesanan");
+
+        buttonPanel.add(backButton);
+        buttonPanel.add(confirmButton);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.NONE;
+
+        card.add(buttonPanel, gbc);
 
         add(card, BorderLayout.CENTER);
 
+        // ===== BUTTON KEMBALI =====
+
         backButton.addActionListener(e -> {
-            MainAppGUI.showCustomerMenu();
+
+            MainAppGUI.showMemberMenu();
+
         });
 
-        // METHOD KONFIRMASI
+        // ===== KONFIRMASI PESANAN =====
+
         confirmButton.addActionListener(e -> {
 
             OrderNode current = data.orderList.getHead();
@@ -126,13 +151,12 @@ public class CustomerDisplayPanel extends JPanel {
 
             while (current != null) {
 
-                if (current.order.getStatus() == 0) { // Menunggu
+                if (current.order.getStatus() == 0
+                        && current.order.getBuyer()
+                                .equalsIgnoreCase(
+                                        data.currentMember.name)) {
 
-                    current.order.setStatus(1); // Sudah dikonfirmasi customer
-
-                    // kirim ke queue admin
-                    // contoh:
-                    // data.adminQueue.enqueue(current.order);
+                    current.order.setStatus(1);
 
                     adaPesanan = true;
                 }
@@ -144,16 +168,15 @@ public class CustomerDisplayPanel extends JPanel {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Semua pesanan berhasil dikonfirmasi!");
+                        "Pesanan berhasil dikonfirmasi!");
 
-                // refresh panel supaya status berubah
-                MainAppGUI.showCustomerDisplay();
+                MainAppGUI.showMemberDisplay();
 
             } else {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Tidak ada pesanan yang perlu dikonfirmasi.");
+                        "Tidak ada pesanan yang dapat dikonfirmasi.");
             }
         });
     }

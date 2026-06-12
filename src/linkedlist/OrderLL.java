@@ -63,17 +63,19 @@ public class OrderLL {
         String lastId = tail.order.getId();
 
         int number = Integer.parseInt(
-                lastId.replace("ORD", "")
-        );
+                lastId.replace("ORD", ""));
 
         return String.format("ORD%03d", number + 1);
     }
 
-    public void createOrder(String buyer,
+    public void createOrder(
+            String buyer,
             String service,
             double price,
             String type,
             int qty) {
+
+        System.out.println("Buyer yang disimpan : " + buyer);
 
         String id = generateOrderId();
 
@@ -83,11 +85,9 @@ public class OrderLL {
                 service,
                 price,
                 type,
-                qty
-        );
+                qty);
 
         addOrder(order);
     }
 
-    
 }
