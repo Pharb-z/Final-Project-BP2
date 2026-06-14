@@ -9,82 +9,84 @@ import node.*;
 
 public class MemberSpendingReportPanel extends JPanel {
 
-    private AppData data;
+        private AppData data;
 
-    public MemberSpendingReportPanel(AppData data) {
+        public MemberSpendingReportPanel(AppData data) {
 
-        this.data = data;
+                this.data = data;
 
-        setLayout(new BorderLayout());
+                setLayout(new BorderLayout());
 
-        JPanel card = new JPanel();
-        card.setLayout(
-                new BoxLayout(
-                        card,
-                        BoxLayout.Y_AXIS));
+                JPanel card = new JPanel();
+                card.setLayout(
+                                new BoxLayout(
+                                                card,
+                                                BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel(
-                "Laporan Total Belanja Member",
-                JLabel.CENTER);
+                JLabel title = new JLabel(
+                                "Laporan Total Belanja Member",
+                                JLabel.CENTER);
 
-        title.setFont(
-                new Font(
-                        "Arial",
-                        Font.BOLD,
-                        20));
+                title.setFont(
+                                new Font(
+                                                "Arial",
+                                                Font.BOLD,
+                                                20));
 
-        title.setAlignmentX(
-                Component.CENTER_ALIGNMENT);
+                title.setAlignmentX(
+                                Component.CENTER_ALIGNMENT);
 
-        card.add(Box.createVerticalStrut(20));
-        card.add(title);
-        card.add(Box.createVerticalStrut(20));
+                card.add(Box.createVerticalStrut(20));
+                card.add(title);
+                card.add(Box.createVerticalStrut(20));
 
-        MemberNode current = data.memberList.getHead();
+                MemberNode current = data.memberList.getHead();
 
-        int nomor = 1;
+                int nomor = 1;
 
-        while (current != null) {
+                while (current != null) {
 
-            JLabel lbl = new JLabel(
+                        JLabel lbl = new JLabel(
 
-                    nomor + ". "
-                            + current.name
-                            + " : Rp "
-                            + String.format(
-                                    "%,.0f",
-                                    current.totalBelanja)
+                                        nomor + ". "
+                                                        + current.name
+                                                        + " : Rp "
+                                                        + String.format(
+                                                                        "%,.0f",
+                                                                        current.totalBelanja)
 
-            );
+                        );
 
-            lbl.setFont(
-                    new Font(
-                            "Arial",
-                            Font.PLAIN,
-                            16));
+                        lbl.setFont(
+                                        new Font(
+                                                        "Arial",
+                                                        Font.PLAIN,
+                                                        16));
 
-            card.add(lbl);
+                        lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            nomor++;
+                        card.add(lbl);
 
-            current = current.getNext();
+                        nomor++;
+
+                        current = current.getNext();
+                }
+
+                card.add(Box.createVerticalStrut(20));
+
+                JButton backButton = new JButton("Kembali");
+
+                backButton.setAlignmentX(
+                                Component.CENTER_ALIGNMENT);
+
+                card.add(backButton);
+
+                add(card, BorderLayout.CENTER);
+
+                backButton.addActionListener(e -> {
+
+                        MainAppGUI.showOwnerMenu();
+
+                });
         }
-
-        card.add(Box.createVerticalStrut(20));
-
-        JButton backButton = new JButton("Kembali");
-
-        backButton.setAlignmentX(
-                Component.CENTER_ALIGNMENT);
-
-        card.add(backButton);
-
-        add(card, BorderLayout.CENTER);
-
-        backButton.addActionListener(e -> {
-
-            MainAppGUI.showOwnerMenu();
-
-        });
-    }
 }

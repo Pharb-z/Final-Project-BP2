@@ -46,7 +46,7 @@ public class OwnerDisplayPanel extends JPanel {
 
                 JLabel lblBelum = new JLabel(
                                 "Order Belum Diproses");
-
+                lblBelum.setAlignmentX(Component.CENTER_ALIGNMENT);
                 lblBelum.setFont(
                                 new Font("Arial",
                                                 Font.BOLD,
@@ -119,7 +119,7 @@ public class OwnerDisplayPanel extends JPanel {
 
                 JLabel lblSelesai = new JLabel(
                                 "Order Sudah Diproses");
-
+                lblSelesai.setAlignmentX(Component.CENTER_ALIGNMENT);
                 lblSelesai.setFont(
                                 new Font("Arial",
                                                 Font.BOLD,
@@ -165,7 +165,7 @@ public class OwnerDisplayPanel extends JPanel {
 
                 mainPanel.add(scrollSelesai);
 
-                mainPanel.add(Box.createVerticalStrut(20));
+                mainPanel.add(Box.createVerticalStrut(50));
 
                 // =========================================
                 // BUTTON
@@ -181,7 +181,12 @@ public class OwnerDisplayPanel extends JPanel {
 
                 mainPanel.add(buttonPanel);
 
-                add(mainPanel, BorderLayout.CENTER);
+                JPanel wrapper = new JPanel(
+                                new GridBagLayout());
+
+                wrapper.add(mainPanel);
+
+                add(wrapper, BorderLayout.CENTER);
 
                 // =========================================
                 // ACTION

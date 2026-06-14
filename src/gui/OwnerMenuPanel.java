@@ -51,18 +51,26 @@ public class OwnerMenuPanel extends JPanel {
 
         // ===== TOTAL SUDAH DIPROSES =====
 
-        processedLabel = new JLabel();
+        processedLabel = new JLabel("", JLabel.CENTER);
+
+        processedLabel.setFont(
+                new Font("Arial",
+                        Font.BOLD,
+                        14));
 
         gbc.gridy = 1;
-
         card.add(processedLabel, gbc);
 
         // ===== TOTAL BELUM DIPROSES =====
 
-        unprocessedLabel = new JLabel();
+        unprocessedLabel = new JLabel("", JLabel.CENTER);
+
+        unprocessedLabel.setFont(
+                new Font("Arial",
+                        Font.BOLD,
+                        14));
 
         gbc.gridy = 2;
-
         card.add(unprocessedLabel, gbc);
 
         // ===== BUTTON =====
