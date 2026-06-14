@@ -43,11 +43,9 @@ public class CustomerMenuPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         JButton orderButton = new JButton("Buat Pesanan");
         JButton historyButton = new JButton("Lihat Pesanan");
-        JButton deleteButton = new JButton("Hapus Pesanan");
         JButton backButton = new JButton("Kembali");
         buttonPanel.add(orderButton);
         buttonPanel.add(historyButton);
-        buttonPanel.add(deleteButton);
         buttonPanel.add(backButton);
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -60,24 +58,6 @@ public class CustomerMenuPanel extends JPanel {
         });
         historyButton.addActionListener(e -> {
             MainAppGUI.showCustomerDisplay();
-        });
-        deleteButton.addActionListener(e -> {
-            int confirm = JOptionPane.showConfirmDialog(
-                    this,
-                    "Apakah Anda yakin ingin menghapus semua pesanan?",
-                    "Konfirmasi Hapus",
-                    JOptionPane.YES_NO_OPTION);
-
-            if (confirm == JOptionPane.YES_OPTION) {
-
-                // Hapus semua pesanan
-                data.orderList = new OrderLL();
-
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Semua pesanan berhasil dihapus!");
-
-            }
         });
         backButton.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin kembali ke halaman utama?",

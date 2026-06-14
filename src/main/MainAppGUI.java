@@ -190,6 +190,22 @@ public class MainAppGUI {
 
         frame.setContentPane(
                 new OwnerEditPricePanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showOwnerSalesReport() {
+
+        frame.setContentPane(
+                new OwnerSalesReportPanel(data));
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public static void showMemberSpendingReport() {
+
+        frame.setContentPane(
+                new MemberSpendingReportPanel(data));
 
         frame.revalidate();
         frame.repaint();

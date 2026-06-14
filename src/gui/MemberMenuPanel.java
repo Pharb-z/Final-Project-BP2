@@ -62,15 +62,12 @@ public class MemberMenuPanel extends JPanel {
 
         JButton historyButton = new JButton("Lihat Pesanan");
 
-        JButton deleteButton = new JButton("Hapus Pesanan");
-
         JButton changePasswordButton = new JButton("Ganti Password");
 
         JButton backButton = new JButton("Kembali");
 
         buttonPanel.add(orderButton);
         buttonPanel.add(historyButton);
-        buttonPanel.add(deleteButton);
         buttonPanel.add(changePasswordButton);
         buttonPanel.add(backButton);
 
@@ -95,40 +92,6 @@ public class MemberMenuPanel extends JPanel {
         historyButton.addActionListener(e -> {
 
             MainAppGUI.showMemberDisplay();
-
-        });
-
-        // Hapus Semua Pesanan Member
-        deleteButton.addActionListener(e -> {
-
-            int confirm = JOptionPane.showConfirmDialog(
-                    this,
-                    "Yakin ingin menghapus semua pesanan Anda?",
-                    "Konfirmasi Hapus",
-                    JOptionPane.YES_NO_OPTION);
-
-            if (confirm == JOptionPane.YES_OPTION) {
-
-                OrderNode current = data.orderList.getHead();
-
-                while (current != null) {
-
-                    OrderNode next = current.getNext();
-
-                    if (current.order.getBuyer()
-                            .equalsIgnoreCase(data.currentMember.name)) {
-
-                        data.orderList.deleteOrder(
-                                current.order.getId());
-                    }
-
-                    current = next;
-                }
-
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Semua pesanan berhasil dihapus!");
-            }
 
         });
 

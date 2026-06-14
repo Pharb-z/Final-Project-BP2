@@ -153,6 +153,65 @@ public class AdminProcessPanel extends JPanel {
 
                                         current.order.setStatus(2);
 
+                                        double subtotal = current.order.getSubtotal();
+
+                                        data.totalPendapatan += subtotal;
+
+                                        String buyer = current.order.getBuyer();
+
+                                        MemberNode memberNode = data.memberList.getHead();
+
+                                        while (memberNode != null) {
+
+                                                if (memberNode.name.equalsIgnoreCase(
+                                                                current.order.getBuyer())) {
+                                                        memberNode.totalBelanja += subtotal;
+                                                        break;
+                                                }
+
+                                                memberNode = memberNode.getNext();
+                                        }
+                                        ditemukan = true;
+
+                                        String layanan = current.order.getService();
+                                        String tipe = current.order.getType();
+
+                                        if (layanan.equals("Cuci Basah")) {
+
+                                                data.totalCuciBasahKiloan += subtotal;
+
+                                        } else if (layanan.equals("Cuci Kering")
+                                                        && tipe.equals("Kiloan")) {
+
+                                                data.totalCuciKeringKiloan += subtotal;
+
+                                        } else if (layanan.equals("Cuci Kering")
+                                                        && tipe.equals("Satuan")) {
+
+                                                data.totalCuciKeringSatuan += subtotal;
+
+                                        } else if (layanan.equals("Cuci Kering + Setrika")
+                                                        && tipe.equals("Kiloan")) {
+
+                                                data.totalCuciKeringSetrikaKiloan += subtotal;
+
+                                        } else if (layanan.equals("Cuci Kering + Setrika")
+                                                        && tipe.equals("Satuan")) {
+
+                                                data.totalCuciKeringSetrikaSatuan += subtotal;
+
+                                        } else if (layanan.equals("Setrika")
+                                                        && tipe.equals("Kiloan")) {
+
+                                                data.totalSetrikaKiloan += subtotal;
+
+                                        } else if (layanan.equals("Setrika")
+                                                        && tipe.equals("Satuan")) {
+
+                                                data.totalSetrikaSatuan += subtotal;
+
+                                        }
+
                                         ditemukan = true;
 
                                         JOptionPane.showMessageDialog(

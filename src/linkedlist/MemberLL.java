@@ -6,7 +6,12 @@ public class MemberLL {
 
     MemberNode tail, head;
 
-    public void addMember(String id, String name, String phone, String address, String password, String membershipLevel) {
+    public MemberNode getHead() {
+        return head;
+    }
+
+    public void addMember(String id, String name, String phone, String address, String password,
+            String membershipLevel) {
         MemberNode newNode = new MemberNode(id, name, phone, address, password, membershipLevel);
         if (head == null) {
             head = tail = newNode;

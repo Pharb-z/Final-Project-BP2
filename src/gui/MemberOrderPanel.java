@@ -123,40 +123,130 @@ public class MemberOrderPanel extends JPanel {
 
         });
         orderButton.addActionListener(e -> {
+
             String selectedService = (String) serviceComboBox.getSelectedItem();
+
             String[] parts = selectedService.split(" - ");
+
             String serviceId = parts[0].trim();
+
             ServiceNode serviceNode = data.serviceKiloan.searchService(serviceId);
+
             if (serviceNode == null) {
+
                 serviceNode = data.serviceSatuan.searchService(serviceId);
+
             }
+
             if (serviceNode != null) {
+
                 String qtyText = qtyField.getText().trim();
+
                 if (!qtyText.isEmpty()) {
+
                     try {
+
                         double quantity = Double.parseDouble(qtyText);
-                        JOptionPane.showMessageDialog(this,
-                                "Anda memesan: " + serviceNode.nameService + " (" + serviceNode.serviceType
-                                        + ") dengan jumlah " + quantity,
-                                "Pesanan Diterima", JOptionPane.INFORMATION_MESSAGE);
-                        // Masukkan orderan ke order list
-                        System.out.println("Member Login : " + data.currentMember.id);
+
+                        // Validasi jumlah
+
+                        if (quantity <= 0) {
+
+                            JOptionPane.showMessageDialog(
+                                    this,
+                                    "Jumlah harus lebih dari 0!",
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+
+                            return;
+                        }
+
+                        // Harga asli
+
+                        double hargaAsli = serviceNode.price;
+
+                        // Diskon 5%
+
+                        double hargaDiskon = hargaAsli * 0.95;
+
+                        // Total
+
+                        double subtotal = hargaDiskon * quantity;
+
+                        // Tampilkan informasi diskon
+
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Member mendapatkan diskon 5%\n\n"
+                                        + "Layanan : "
+                                        + serviceNode.nameService + "\n"
+                                        + "Harga Asli : Rp "
+                                        + String.format("%,.0f", hargaAsli)
+                                        + "\n"
+                                        + "Harga Setelah Diskon : Rp "
+                                        + String.format("%,.0f", hargaDiskon)
+                                        + "\n"
+                                        + "Jumlah : "
+                                        + (int) quantity
+                                        + "\n"
+                                        + "Total Bayar : Rp "
+                                        + String.format("%,.0f", subtotal),
+                                "Diskon Member",
+                                JOptionPane.INFORMATION_MESSAGE);
+
+                        // Simpan transaksi
+
                         data.orderList.createOrder(
                                 data.currentMember.name,
                                 serviceNode.nameService,
-                                serviceNode.price,
+                                hargaDiskon,
                                 serviceNode.serviceType,
                                 (int) quantity);
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(this, "Masukkan jumlah yang valid!", "Error",
-                                JOptionPane.ERROR_MESSAGE);
+
+                        System.out.println(
+                                "Member Login : "
+                                        + data.currentMember.name);
+
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Pesanan berhasil dibuat!",
+                                "Sukses",
+                                JOptionPane.INFORMATION_MESSAGE);
+
+                        qtyField.setText("");
+
                     }
+
+                    catch (NumberFormatException ex) {
+
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Masukkan jumlah yang valid!",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(this, "Masukkan jumlah!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Masukkan jumlah terlebih dahulu!",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+
                 }
+
             } else {
-                JOptionPane.showMessageDialog(this, "Layanan tidak ditemukan!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Layanan tidak ditemukan!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+
             }
+
         });
         add(card, BorderLayout.CENTER);
     }
