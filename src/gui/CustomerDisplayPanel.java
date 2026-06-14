@@ -41,9 +41,11 @@ public class CustomerDisplayPanel extends JPanel {
 
         JButton backButton = new JButton("Kembali");
         JButton confirmButton = new JButton("Konfirmasi Pesanan");
+        JButton deleteButton = new JButton("Hapus Pesanan");
 
         buttonPanel.add(backButton);
         buttonPanel.add(confirmButton);
+        buttonPanel.add(deleteButton);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -126,7 +128,9 @@ public class CustomerDisplayPanel extends JPanel {
 
             while (current != null) {
 
-                if (current.order.getStatus() == 0) { // Menunggu
+                if (current.order.getStatus() == 0
+                        && current.order.getBuyer()
+                                .equalsIgnoreCase(data.currentCustomer.id)) { // Menunggu
 
                     current.order.setStatus(1); // Sudah dikonfirmasi customer
 
@@ -155,6 +159,39 @@ public class CustomerDisplayPanel extends JPanel {
                         this,
                         "Tidak ada pesanan yang perlu dikonfirmasi.");
             }
+        });
+        // fungsi tombol hapus
+        deleteButton.addActionListener(e -> {
+
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "Yakin ingin menghapus semua pesanan Anda yang belum dikonfirmasi?",
+                    "Konfirmasi Hapus",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm != JOptionPane.YES_OPTION) {
+                return;
+            }
+
+            OrderNode current = data.orderList.getHead();
+
+            while (current != null) {
+
+                if (current.order.getBuyer()
+                        .equalsIgnoreCase(data.currentCustomer.id)
+                        && current.order.getStatus() == 0) {
+
+                    current.order.setStatus(-1);
+                }
+
+                current = current.getNext();
+            }
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pesanan berhasil dihapus!");
+
+            MainAppGUI.showCustomerDisplay();
         });
     }
 }

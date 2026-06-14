@@ -185,4 +185,13 @@ public class MainAppGUI {
         frame.revalidate();
         frame.repaint();
     }
+
+    public static void showOwnerEditPrice() {
+
+        frame.setContentPane(
+                new OwnerEditPricePanel(data));
+
+        frame.revalidate();
+        frame.repaint();
+    }
 }

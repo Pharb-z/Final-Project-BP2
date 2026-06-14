@@ -74,10 +74,11 @@ public class OwnerMenuPanel extends JPanel {
                         0));
 
         JButton laporanButton = new JButton("Lihat Laporan");
-
+        JButton editPriceButton = new JButton("Ubah Harga Layanan");
         JButton backButton = new JButton("Logout");
 
         buttonPanel.add(laporanButton);
+        buttonPanel.add(editPriceButton);
         buttonPanel.add(backButton);
 
         gbc.gridy = 3;
@@ -93,6 +94,12 @@ public class OwnerMenuPanel extends JPanel {
         laporanButton.addActionListener(e -> {
 
             MainAppGUI.showOwnerDisplay();
+
+        });
+
+        // ubah harga
+        editPriceButton.addActionListener(e -> {
+            MainAppGUI.showOwnerEditPrice();
 
         });
 
