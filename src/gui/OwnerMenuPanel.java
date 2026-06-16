@@ -138,12 +138,11 @@ public class OwnerMenuPanel extends JPanel {
 
             double subtotal = current.order.getSubtotal();
 
-            // status 2 = selesai
             if (current.order.getStatus() == 2) {
 
                 totalProcessed += subtotal;
 
-            } else {
+            } else if (current.order.getStatus() == 1) {
 
                 totalUnprocessed += subtotal;
 
@@ -154,10 +153,10 @@ public class OwnerMenuPanel extends JPanel {
 
         processedLabel.setText(
                 "Total Nilai Order Sudah Diproses : Rp "
-                + totalProcessed);
+                        + String.format("%,.0f", totalProcessed));
 
         unprocessedLabel.setText(
                 "Total Nilai Order Belum Diproses : Rp "
-                + totalUnprocessed);
+                        + String.format("%,.0f", totalUnprocessed));
     }
 }
