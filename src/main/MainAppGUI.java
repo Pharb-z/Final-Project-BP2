@@ -14,38 +14,11 @@ public class MainAppGUI {
 
         // Membership
         data.memberList = new MemberLL();
-
-        data.memberList.addMember(
-                "M1",
-                "Rava",
-                "085788812399",
-                "Kalijudan",
-                "123",
-                "Bronze");
-
-        data.memberList.addMember(
-                "M2",
-                "Farhan",
-                "081234567890",
-                "Kepuh Kemiri",
-                "123",
-                "Bronze");
-
-        data.memberList.addMember(
-                "M3",
-                "Bhinar",
-                "082737762367",
-                "Tambaksari",
-                "123",
-                "Bronze");
-
-        data.memberList.addMember(
-                "M4",
-                "Farrel",
-                "082334778343",
-                "Sirapan",
-                "123",
-                "Bronze");
+        
+        data.memberList.addMember("M1", "Rava", "085788812399", "Kalijudan", "123", "Bronze");
+        data.memberList.addMember("M2", "Farhan", "081234567890", "Kepuh Kemiri", "123", "Bronze");
+        data.memberList.addMember("M3", "Bhinar", "082737762367", "Tambaksari", "123", "Bronze");
+        data.memberList.addMember("M4", "Farrel", "082334778343", "Sirapan", "123", "Bronze");
 
         // Service Kiloan
         data.serviceKiloan = new ServiceLL();

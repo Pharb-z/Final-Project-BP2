@@ -3,7 +3,6 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import main.MainAppGUI;
 import model.*;
 import node.OrderNode;
@@ -57,14 +56,14 @@ public class CustomerDisplayPanel extends JPanel {
         card.add(buttonPanel, gbc);
 
         String[] kolom = {
-                "ID Order",
-                "Customer",
-                "Layanan",
-                "Harga",
-                "Tipe",
-                "Qty",
-                "Subtotal",
-                "Status"
+            "ID Order",
+            "Customer",
+            "Layanan",
+            "Harga",
+            "Tipe",
+            "Qty",
+            "Subtotal",
+            "Status"
         };
 
         DefaultTableModel model = new DefaultTableModel(kolom, 0);
@@ -81,15 +80,15 @@ public class CustomerDisplayPanel extends JPanel {
 
                     String statusText = "Menunggu";
 
-                    model.addRow(new Object[] {
-                            current.order.getId(),
-                            current.order.getBuyer(),
-                            current.order.getService(),
-                            current.order.getPrice(),
-                            current.order.getType(),
-                            current.order.getQty(),
-                            current.order.getSubtotal(),
-                            statusText
+                    model.addRow(new Object[]{
+                        current.order.getId(),
+                        current.order.getBuyer(),
+                        current.order.getService(),
+                        current.order.getPrice(),
+                        current.order.getType(),
+                        current.order.getQty(),
+                        current.order.getSubtotal(),
+                        statusText
                     });
                 }
 
@@ -137,7 +136,6 @@ public class CustomerDisplayPanel extends JPanel {
                     // kirim ke queue admin
                     // contoh:
                     // data.adminQueue.enqueue(current.order);
-
                     adaPesanan = true;
                 }
 

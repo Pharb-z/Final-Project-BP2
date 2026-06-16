@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
-
 import main.*;
 import model.*;
 
@@ -78,7 +77,6 @@ public class AdminMenuPanel extends JPanel {
         add(card, BorderLayout.CENTER);
 
         // ===== ACTION =====
-
         viewOrderButton.addActionListener(e -> {
 
             MainAppGUI.showAdminDisplay();

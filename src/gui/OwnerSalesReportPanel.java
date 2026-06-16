@@ -2,164 +2,162 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
-
 import main.*;
 import model.*;
 
 public class OwnerSalesReportPanel extends JPanel {
 
-        private AppData data;
+    private AppData data;
 
-        private String buatGrafik(double nilai) {
+    private String buatGrafik(double nilai) {
 
-                int jumlahX = (int) (nilai / 10000);
+        int jumlahX = (int) (nilai / 10000);
 
-                String grafik = "";
+        String grafik = "";
 
-                for (int i = 0; i < jumlahX; i++) {
-                        grafik += "X";
-                }
-
-                return grafik;
+        for (int i = 0; i < jumlahX; i++) {
+            grafik += "X";
         }
 
-        public OwnerSalesReportPanel(AppData data) {
+        return grafik;
+    }
 
-                this.data = data;
+    public OwnerSalesReportPanel(AppData data) {
 
-                setLayout(new BorderLayout());
+        this.data = data;
 
-                JPanel card = new JPanel();
-                card.setLayout(
-                                new BoxLayout(
-                                                card,
-                                                BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
 
-                JLabel title = new JLabel(
-                                "Laporan Penjualan Harian",
-                                JLabel.CENTER);
+        JPanel card = new JPanel();
+        card.setLayout(
+                new BoxLayout(
+                        card,
+                        BoxLayout.Y_AXIS));
 
-                title.setFont(
-                                new Font(
-                                                "Arial",
-                                                Font.BOLD,
-                                                20));
+        JLabel title = new JLabel(
+                "Laporan Penjualan Harian",
+                JLabel.CENTER);
 
-                title.setAlignmentX(
-                                Component.CENTER_ALIGNMENT);
+        title.setFont(
+                new Font(
+                        "Arial",
+                        Font.BOLD,
+                        20));
 
-                card.add(Box.createVerticalStrut(20));
-                card.add(title);
-                card.add(Box.createVerticalStrut(20));
+        title.setAlignmentX(
+                Component.CENTER_ALIGNMENT);
 
-                JLabel totalLabel = new JLabel(
-                                "Total Pendapatan : Rp "
-                                                + String.format("%,.0f", data.totalPendapatan));
+        card.add(Box.createVerticalStrut(20));
+        card.add(title);
+        card.add(Box.createVerticalStrut(20));
 
-                JLabel cbLabel = new JLabel(
-                                "Cuci Basah : "
-                                                + buatGrafik(data.totalCuciBasahKiloan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalCuciBasahKiloan));
+        JLabel totalLabel = new JLabel(
+                "Total Pendapatan : Rp "
+                + String.format("%,.0f", data.totalPendapatan));
 
-                JLabel ckKiloanLabel = new JLabel(
-                                "Cuci Kering (Kiloan) : "
-                                                + buatGrafik(data.totalCuciKeringKiloan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalCuciKeringKiloan));
+        JLabel cbLabel = new JLabel(
+                "Cuci Basah : "
+                + buatGrafik(data.totalCuciBasahKiloan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalCuciBasahKiloan));
 
-                JLabel ckSatuanLabel = new JLabel(
-                                "Cuci Kering (Satuan) : "
-                                                + buatGrafik(data.totalCuciKeringSatuan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalCuciKeringSatuan));
+        JLabel ckKiloanLabel = new JLabel(
+                "Cuci Kering (Kiloan) : "
+                + buatGrafik(data.totalCuciKeringKiloan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalCuciKeringKiloan));
 
-                JLabel cksKiloanLabel = new JLabel(
-                                "Cuci Kering + Setrika (Kiloan) : "
-                                                + buatGrafik(data.totalCuciKeringSetrikaKiloan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalCuciKeringSetrikaKiloan));
+        JLabel ckSatuanLabel = new JLabel(
+                "Cuci Kering (Satuan) : "
+                + buatGrafik(data.totalCuciKeringSatuan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalCuciKeringSatuan));
 
-                JLabel cksSatuanLabel = new JLabel(
-                                "Cuci Kering + Setrika (Satuan) : "
-                                                + buatGrafik(data.totalCuciKeringSetrikaSatuan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalCuciKeringSetrikaSatuan));
+        JLabel cksKiloanLabel = new JLabel(
+                "Cuci Kering + Setrika (Kiloan) : "
+                + buatGrafik(data.totalCuciKeringSetrikaKiloan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalCuciKeringSetrikaKiloan));
 
-                JLabel setrikaKiloanLabel = new JLabel(
-                                "Setrika (Kiloan) : "
-                                                + buatGrafik(data.totalSetrikaKiloan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalSetrikaKiloan));
+        JLabel cksSatuanLabel = new JLabel(
+                "Cuci Kering + Setrika (Satuan) : "
+                + buatGrafik(data.totalCuciKeringSetrikaSatuan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalCuciKeringSetrikaSatuan));
 
-                JLabel setrikaSatuanLabel = new JLabel(
-                                "Setrika (Satuan) : "
-                                                + buatGrafik(data.totalSetrikaSatuan)
-                                                + " Rp "
-                                                + String.format("%,.0f",
-                                                                data.totalSetrikaSatuan));
-                // agar tengah
-                totalLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel setrikaKiloanLabel = new JLabel(
+                "Setrika (Kiloan) : "
+                + buatGrafik(data.totalSetrikaKiloan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalSetrikaKiloan));
 
-                cbLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                ckKiloanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                ckSatuanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel setrikaSatuanLabel = new JLabel(
+                "Setrika (Satuan) : "
+                + buatGrafik(data.totalSetrikaSatuan)
+                + " Rp "
+                + String.format("%,.0f",
+                        data.totalSetrikaSatuan));
+        // agar tengah
+        totalLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-                cksKiloanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                cksSatuanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cbLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        ckKiloanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        ckSatuanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-                setrikaKiloanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                setrikaSatuanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cksKiloanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cksSatuanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-                // ===== TAMBAHKAN KE PANEL =====
+        setrikaKiloanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        setrikaSatuanLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-                card.add(totalLabel);
+        // ===== TAMBAHKAN KE PANEL =====
+        card.add(totalLabel);
 
-                card.add(Box.createVerticalStrut(10));
+        card.add(Box.createVerticalStrut(10));
 
-                card.add(cbLabel);
-                card.add(Box.createVerticalStrut(5));
+        card.add(cbLabel);
+        card.add(Box.createVerticalStrut(5));
 
-                card.add(ckKiloanLabel);
-                card.add(Box.createVerticalStrut(5));
+        card.add(ckKiloanLabel);
+        card.add(Box.createVerticalStrut(5));
 
-                card.add(ckSatuanLabel);
-                card.add(Box.createVerticalStrut(5));
+        card.add(ckSatuanLabel);
+        card.add(Box.createVerticalStrut(5));
 
-                card.add(cksKiloanLabel);
-                card.add(Box.createVerticalStrut(5));
+        card.add(cksKiloanLabel);
+        card.add(Box.createVerticalStrut(5));
 
-                card.add(cksSatuanLabel);
-                card.add(Box.createVerticalStrut(5));
+        card.add(cksSatuanLabel);
+        card.add(Box.createVerticalStrut(5));
 
-                card.add(setrikaKiloanLabel);
-                card.add(Box.createVerticalStrut(5));
+        card.add(setrikaKiloanLabel);
+        card.add(Box.createVerticalStrut(5));
 
-                card.add(setrikaSatuanLabel);
+        card.add(setrikaSatuanLabel);
 
-                card.add(Box.createVerticalStrut(30));
-                JButton backButton = new JButton("Kembali");
+        card.add(Box.createVerticalStrut(30));
+        JButton backButton = new JButton("Kembali");
 
-                backButton.setAlignmentX(
-                                Component.CENTER_ALIGNMENT);
+        backButton.setAlignmentX(
+                Component.CENTER_ALIGNMENT);
 
-                card.add(backButton);
+        card.add(backButton);
 
-                JPanel wrapper = new JPanel(new GridBagLayout());
-                wrapper.add(card);
+        JPanel wrapper = new JPanel(new GridBagLayout());
+        wrapper.add(card);
 
-                add(wrapper, BorderLayout.CENTER);
+        add(wrapper, BorderLayout.CENTER);
 
-                backButton.addActionListener(e -> {
+        backButton.addActionListener(e -> {
 
-                        MainAppGUI.showOwnerMenu();
+            MainAppGUI.showOwnerMenu();
 
-                });
-        }
+        });
+    }
 }

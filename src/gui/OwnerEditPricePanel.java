@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
-
 import main.*;
 import model.*;
 import node.*;
@@ -28,7 +27,6 @@ public class OwnerEditPricePanel extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
 
         // ===== TITLE =====
-
         JLabel title = new JLabel(
                 "Ubah Harga Layanan",
                 JLabel.CENTER);
@@ -46,7 +44,6 @@ public class OwnerEditPricePanel extends JPanel {
         card.add(title, gbc);
 
         // ===== COMBOBOX =====
-
         JLabel serviceLabel = new JLabel("Pilih Layanan :");
 
         gbc.gridx = 0;
@@ -63,8 +60,8 @@ public class OwnerEditPricePanel extends JPanel {
 
             serviceCombo.addItem(
                     current.idService
-                            + " - "
-                            + current.nameService);
+                    + " - "
+                    + current.nameService);
 
             current = current.getNext();
         }
@@ -75,8 +72,8 @@ public class OwnerEditPricePanel extends JPanel {
 
             serviceCombo.addItem(
                     current.idService
-                            + " - "
-                            + current.nameService);
+                    + " - "
+                    + current.nameService);
 
             current = current.getNext();
         }
@@ -86,7 +83,6 @@ public class OwnerEditPricePanel extends JPanel {
         card.add(serviceCombo, gbc);
 
         // ===== HARGA BARU =====
-
         JLabel priceLabel = new JLabel("Harga Baru :");
 
         gbc.gridx = 0;
@@ -101,7 +97,6 @@ public class OwnerEditPricePanel extends JPanel {
         card.add(priceField, gbc);
 
         // ===== BUTTON =====
-
         JPanel buttonPanel = new JPanel(
                 new FlowLayout());
 
@@ -123,7 +118,6 @@ public class OwnerEditPricePanel extends JPanel {
         // =======================
         // SIMPAN
         // =======================
-
         saveButton.addActionListener(e -> {
 
             try {
@@ -167,7 +161,6 @@ public class OwnerEditPricePanel extends JPanel {
         // =======================
         // KEMBALI
         // =======================
-
         backButton.addActionListener(e -> {
 
             MainAppGUI.showOwnerMenu();

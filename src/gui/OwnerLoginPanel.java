@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
-
 import main.*;
 import model.*;
 
@@ -28,7 +27,6 @@ public class OwnerLoginPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // ===== TITLE =====
-
         JLabel title = new JLabel(
                 "Owner Login",
                 JLabel.CENTER);
@@ -45,7 +43,6 @@ public class OwnerLoginPanel extends JPanel {
         card.add(title, gbc);
 
         // ===== NAMA =====
-
         gbc.gridwidth = 1;
 
         gbc.gridx = 0;
@@ -55,8 +52,8 @@ public class OwnerLoginPanel extends JPanel {
                 new JLabel("Nama : "),
                 gbc);
 
-        JTextField nameField =
-                new JTextField(15);
+        JTextField nameField
+                = new JTextField(15);
 
         gbc.gridx = 1;
 
@@ -65,7 +62,6 @@ public class OwnerLoginPanel extends JPanel {
                 gbc);
 
         // ===== PASSWORD =====
-
         gbc.gridx = 0;
         gbc.gridy = 2;
 
@@ -73,8 +69,8 @@ public class OwnerLoginPanel extends JPanel {
                 new JLabel("Password : "),
                 gbc);
 
-        JPasswordField passwordField =
-                new JPasswordField(15);
+        JPasswordField passwordField
+                = new JPasswordField(15);
 
         gbc.gridx = 1;
 
@@ -83,19 +79,18 @@ public class OwnerLoginPanel extends JPanel {
                 gbc);
 
         // ===== BUTTON =====
-
-        JPanel buttonPanel =
-                new JPanel(
+        JPanel buttonPanel
+                = new JPanel(
                         new FlowLayout(
                                 FlowLayout.CENTER,
                                 10,
                                 0));
 
-        JButton loginButton =
-                new JButton("Login");
+        JButton loginButton
+                = new JButton("Login");
 
-        JButton backButton =
-                new JButton("Kembali");
+        JButton backButton
+                = new JButton("Kembali");
 
         buttonPanel.add(loginButton);
         buttonPanel.add(backButton);
@@ -109,14 +104,13 @@ public class OwnerLoginPanel extends JPanel {
         add(card, BorderLayout.CENTER);
 
         // ===== LOGIN =====
-
         loginButton.addActionListener(e -> {
 
-            String name =
-                    nameField.getText().trim();
+            String name
+                    = nameField.getText().trim();
 
-            String password =
-                    new String(
+            String password
+                    = new String(
                             passwordField.getPassword());
 
             if (name.equalsIgnoreCase(data.owner.name)
@@ -139,7 +133,6 @@ public class OwnerLoginPanel extends JPanel {
         });
 
         // ===== KEMBALI =====
-
         backButton.addActionListener(e -> {
 
             MainAppGUI.showLandingPage();

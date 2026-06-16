@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 import main.*;
 import model.*;
-import node.OrderNode;
 
 public class MemberMenuPanel extends JPanel {
 
@@ -41,8 +40,8 @@ public class MemberMenuPanel extends JPanel {
         // ===== WELCOME =====
         JLabel welcomeLabel = new JLabel(
                 "Welcome, "
-                        + data.currentMember.name
-                        + "!",
+                + data.currentMember.name
+                + "!",
                 JLabel.CENTER);
 
         gbc.gridx = 0;
@@ -80,7 +79,6 @@ public class MemberMenuPanel extends JPanel {
         add(card);
 
         // ===== ACTION =====
-
         // Buat Pesanan
         orderButton.addActionListener(e -> {
 

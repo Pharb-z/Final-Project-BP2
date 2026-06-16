@@ -22,7 +22,7 @@ public class MemberLL {
         }
     }
 
-    public void deleteService(String id) {
+    public void deleteMember(String id) {
         MemberNode current = head;
         while (current != null) {
             if (current.id.equals(id)) {
@@ -46,7 +46,7 @@ public class MemberLL {
         }
     }
 
-    public void displayService() {
+    public void displayMember() {
         MemberNode current = head;
         while (current != null) {
             System.out.println(current.toString());

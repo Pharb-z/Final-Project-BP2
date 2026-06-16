@@ -219,7 +219,7 @@ public class MainApp {
                     if (memberLogin != null) {
                         System.out.println("Login berhasil!\nSelamat datang, " + memName + "!");
                         OrderQueue memberCart = new OrderQueue();
-                        int[] memberCounter = { transactionCounter };
+                        int[] memberCounter = {transactionCounter};
                         do {
                             System.out.println("\n===== MENU MEMBER =====");
                             System.out.println("1. Pesan Layanan");

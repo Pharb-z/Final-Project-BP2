@@ -3,7 +3,6 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import main.*;
 import model.*;
 import node.*;
@@ -46,14 +45,14 @@ public class AdminDisplayPanel extends JPanel {
 
         // ===== TABLE =====
         String[] kolom = {
-                "ID Order",
-                "Customer",
-                "Layanan",
-                "Harga",
-                "Tipe",
-                "Qty",
-                "Subtotal",
-                "Status"
+            "ID Order",
+            "Customer",
+            "Layanan",
+            "Harga",
+            "Tipe",
+            "Qty",
+            "Subtotal",
+            "Status"
         };
 
         DefaultTableModel model = new DefaultTableModel(kolom, 0);
@@ -80,15 +79,15 @@ public class AdminDisplayPanel extends JPanel {
                             break;
                     }
 
-                    model.addRow(new Object[] {
-                            current.order.getId(),
-                            current.order.getBuyer(),
-                            current.order.getService(),
-                            current.order.getPrice(),
-                            current.order.getType(),
-                            current.order.getQty(),
-                            current.order.getSubtotal(),
-                            statusText
+                    model.addRow(new Object[]{
+                        current.order.getId(),
+                        current.order.getBuyer(),
+                        current.order.getService(),
+                        current.order.getPrice(),
+                        current.order.getType(),
+                        current.order.getQty(),
+                        current.order.getSubtotal(),
+                        statusText
                     });
                 }
 
@@ -119,7 +118,6 @@ public class AdminDisplayPanel extends JPanel {
         card.add(scrollPane, gbc);
 
         // ===== BUTTON =====
-
         JPanel buttonPanel = new JPanel(
                 new FlowLayout(
                         FlowLayout.CENTER,
@@ -141,7 +139,6 @@ public class AdminDisplayPanel extends JPanel {
         add(card, BorderLayout.CENTER);
 
         // ===== KEMBALI =====
-
         backButton.addActionListener(e -> {
 
             MainAppGUI.showAdminMenu();

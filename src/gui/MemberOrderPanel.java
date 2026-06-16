@@ -35,17 +35,17 @@ public class MemberOrderPanel extends JPanel {
         card.add(title, gbc);
 
         JTable serviceTable = new JTable();
-        String[] kolom = { "ID", "Layanan", "Harga", "Tipe" };
+        String[] kolom = {"ID", "Layanan", "Harga", "Tipe"};
         DefaultTableModel model = new DefaultTableModel(kolom, 0);
 
         ServiceNode current = data.serviceKiloan.getHead();
 
         while (current != null) {
-            model.addRow(new Object[] {
-                    current.idService,
-                    current.nameService,
-                    current.price,
-                    current.serviceType
+            model.addRow(new Object[]{
+                current.idService,
+                current.nameService,
+                current.price,
+                current.serviceType
             });
             current = current.getNext();
         }
@@ -53,11 +53,11 @@ public class MemberOrderPanel extends JPanel {
         current = data.serviceSatuan.getHead();
 
         while (current != null) {
-            model.addRow(new Object[] {
-                    current.idService,
-                    current.nameService,
-                    current.price,
-                    current.serviceType
+            model.addRow(new Object[]{
+                current.idService,
+                current.nameService,
+                current.price,
+                current.serviceType
             });
             current = current.getNext();
         }
@@ -149,7 +149,6 @@ public class MemberOrderPanel extends JPanel {
                         double quantity = Double.parseDouble(qtyText);
 
                         // Validasi jumlah
-
                         if (quantity <= 0) {
 
                             JOptionPane.showMessageDialog(
@@ -162,40 +161,35 @@ public class MemberOrderPanel extends JPanel {
                         }
 
                         // Harga asli
-
                         double hargaAsli = serviceNode.price;
 
                         // Diskon 5%
-
                         double hargaDiskon = hargaAsli * 0.95;
 
                         // Total
-
                         double subtotal = hargaDiskon * quantity;
 
                         // Tampilkan informasi diskon
-
                         JOptionPane.showMessageDialog(
                                 this,
                                 "Member mendapatkan diskon 5%\n\n"
-                                        + "Layanan : "
-                                        + serviceNode.nameService + "\n"
-                                        + "Harga Asli : Rp "
-                                        + String.format("%,.0f", hargaAsli)
-                                        + "\n"
-                                        + "Harga Setelah Diskon : Rp "
-                                        + String.format("%,.0f", hargaDiskon)
-                                        + "\n"
-                                        + "Jumlah : "
-                                        + (int) quantity
-                                        + "\n"
-                                        + "Total Bayar : Rp "
-                                        + String.format("%,.0f", subtotal),
+                                + "Layanan : "
+                                + serviceNode.nameService + "\n"
+                                + "Harga Asli : Rp "
+                                + String.format("%,.0f", hargaAsli)
+                                + "\n"
+                                + "Harga Setelah Diskon : Rp "
+                                + String.format("%,.0f", hargaDiskon)
+                                + "\n"
+                                + "Jumlah : "
+                                + (int) quantity
+                                + "\n"
+                                + "Total Bayar : Rp "
+                                + String.format("%,.0f", subtotal),
                                 "Diskon Member",
                                 JOptionPane.INFORMATION_MESSAGE);
 
                         // Simpan transaksi
-
                         data.orderList.createOrder(
                                 data.currentMember.name,
                                 serviceNode.nameService,
@@ -205,7 +199,7 @@ public class MemberOrderPanel extends JPanel {
 
                         System.out.println(
                                 "Member Login : "
-                                        + data.currentMember.name);
+                                + data.currentMember.name);
 
                         JOptionPane.showMessageDialog(
                                 this,
@@ -215,9 +209,7 @@ public class MemberOrderPanel extends JPanel {
 
                         qtyField.setText("");
 
-                    }
-
-                    catch (NumberFormatException ex) {
+                    } catch (NumberFormatException ex) {
 
                         JOptionPane.showMessageDialog(
                                 this,

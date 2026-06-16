@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
-
 import main.*;
 import model.*;
 import node.*;
@@ -32,7 +31,6 @@ public class OwnerMenuPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // ===== TITLE =====
-
         JLabel title = new JLabel(
                 "Laporan Penjualan",
                 JLabel.CENTER);
@@ -50,7 +48,6 @@ public class OwnerMenuPanel extends JPanel {
         card.add(title, gbc);
 
         // ===== TOTAL SUDAH DIPROSES =====
-
         processedLabel = new JLabel("", JLabel.CENTER);
 
         processedLabel.setFont(
@@ -62,7 +59,6 @@ public class OwnerMenuPanel extends JPanel {
         card.add(processedLabel, gbc);
 
         // ===== TOTAL BELUM DIPROSES =====
-
         unprocessedLabel = new JLabel("", JLabel.CENTER);
 
         unprocessedLabel.setFont(
@@ -74,7 +70,6 @@ public class OwnerMenuPanel extends JPanel {
         card.add(unprocessedLabel, gbc);
 
         // ===== BUTTON =====
-
         JPanel buttonPanel = new JPanel(
                 new FlowLayout(
                         FlowLayout.CENTER,
@@ -159,10 +154,10 @@ public class OwnerMenuPanel extends JPanel {
 
         processedLabel.setText(
                 "Total Nilai Order Sudah Diproses : Rp "
-                        + totalProcessed);
+                + totalProcessed);
 
         unprocessedLabel.setText(
                 "Total Nilai Order Belum Diproses : Rp "
-                        + totalUnprocessed);
+                + totalUnprocessed);
     }
 }
