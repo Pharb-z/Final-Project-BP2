@@ -58,13 +58,9 @@ public class MemberLoginPanel extends JPanel {
 
         // ===== Button =====
         JPanel buttonPanel = new JPanel(
-                new FlowLayout(
-                        FlowLayout.CENTER,
-                        10,
-                        0));
+                new FlowLayout(FlowLayout.CENTER, 10, 0));
 
         JButton backButton = new JButton("Kembali");
-
         JButton loginButton = new JButton("Login");
 
         buttonPanel.add(backButton);
@@ -96,7 +92,8 @@ public class MemberLoginPanel extends JPanel {
 
                 return;
             }
-
+            
+            //Method verifikasi login
             MemberNode member = data.memberList.verifLogin(name, password);
 
             if (member != null) {

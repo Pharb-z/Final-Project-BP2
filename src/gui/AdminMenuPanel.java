@@ -87,12 +87,7 @@ public class AdminMenuPanel extends JPanel {
         });
 
         logoutButton.addActionListener(e -> {
-
-            int confirm = JOptionPane.showConfirmDialog(
-                    this,
-                    "Logout dari akun Admin?",
-                    "Konfirmasi",
-                    JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Logout dari akun Admin?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
 

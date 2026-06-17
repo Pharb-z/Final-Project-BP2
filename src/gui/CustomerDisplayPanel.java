@@ -122,20 +122,10 @@ public class CustomerDisplayPanel extends JPanel {
         confirmButton.addActionListener(e -> {
 
             OrderNode current = data.orderList.getHead();
-
             boolean adaPesanan = false;
-
             while (current != null) {
-
-                if (current.order.getStatus() == 0
-                        && current.order.getBuyer()
-                                .equalsIgnoreCase(data.currentCustomer.id)) { // Menunggu
-
-                    current.order.setStatus(1); // Sudah dikonfirmasi customer
-
-                    // kirim ke queue admin
-                    // contoh:
-                    // data.adminQueue.enqueue(current.order);
+                if (current.order.getStatus() == 0 && current.order.getBuyer().equalsIgnoreCase(data.currentCustomer.id)) {
+                    current.order.setStatus(1);
                     adaPesanan = true;
                 }
 
@@ -144,29 +134,18 @@ public class CustomerDisplayPanel extends JPanel {
 
             if (adaPesanan) {
 
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Semua pesanan berhasil dikonfirmasi!");
-
-                // refresh panel supaya status berubah
+                JOptionPane.showMessageDialog(this, "Semua pesanan berhasil dikonfirmasi!");
                 MainAppGUI.showCustomerDisplay();
 
             } else {
 
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Tidak ada pesanan yang perlu dikonfirmasi.");
+                JOptionPane.showMessageDialog(this, "Tidak ada pesanan yang perlu dikonfirmasi.");
             }
         });
         // fungsi tombol hapus
         deleteButton.addActionListener(e -> {
 
-            int confirm = JOptionPane.showConfirmDialog(
-                    this,
-                    "Yakin ingin menghapus semua pesanan Anda yang belum dikonfirmasi?",
-                    "Konfirmasi Hapus",
-                    JOptionPane.YES_NO_OPTION);
-
+            int confirm = JOptionPane.showConfirmDialog(this, "Yakin ingin menghapus semua pesanan Anda yang belum dikonfirmasi?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION);
             if (confirm != JOptionPane.YES_OPTION) {
                 return;
             }

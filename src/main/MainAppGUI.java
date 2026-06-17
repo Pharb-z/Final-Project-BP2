@@ -14,7 +14,7 @@ public class MainAppGUI {
 
         // Membership
         data.memberList = new MemberLL();
-        
+
         data.memberList.addMember("M1", "Rava", "085788812399", "Kalijudan", "123", "Bronze");
         data.memberList.addMember("M2", "Farhan", "081234567890", "Kepuh Kemiri", "123", "Bronze");
         data.memberList.addMember("M3", "Bhinar", "082737762367", "Tambaksari", "123", "Bronze");
@@ -34,7 +34,7 @@ public class MainAppGUI {
         data.serviceSatuan.addService("SS3", "Setrika", 10000, "Satuan");
 
         // Owner
-        data.owner = new Owner("OWN", "Yuli", "0821398438434", "owner123");
+        data.owner = new Owner("OWN1", "Yuli", "0821398438434", "owner123");
 
         // Admin
         data.admin = new Admin("ADM1", "Radit", "0821923887323", "Sirapan", "admin123");
